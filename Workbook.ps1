@@ -74,6 +74,15 @@ process {
         return     
     }
 
+    # copying transcript
+    if ($IaAddTranscript) {
+        $newTranscript = "$new_dir\$NewName.txt"
+        Write-Host "Copy transcript to '$newTranscript'." -ForegroundColor Green
+        Copy-Item ".\transcript.txt" -Destination "$newTranscript"
+        Write-Host "Clear transcript." -ForegroundColor Yellow
+        Clear-Content ".\transcript.txt"
+    }
+
     # copying files
     Write-Host "Copy files to '$new_dir'." -ForegroundColor Green
     Get-ChildItem -Path $Path -File | Copy-Item -Destination $new_dir 
