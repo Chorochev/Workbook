@@ -21,7 +21,10 @@ param (
     [string]$NewDir,
 
     # the flag for addition contents to the exist folder
-    [switch]$IaAdd = $false
+    [switch]$IaAdd = $false,
+
+    # the flag for addition contents to the exist folder
+    [switch]$IaAddTranscript = $false
 )
     
 begin {
