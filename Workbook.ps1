@@ -79,7 +79,7 @@ process {
 
     # copying transcript
     if ($IaAddTranscript) {
-        $newTranscript = "$new_dir\$NewName.txt"
+        $newTranscript = "$new_dir\$PartNumber-$NewName.txt"
         Write-Host "Copy transcript to '$newTranscript'." -ForegroundColor Green
         Copy-Item ".\transcript.txt" -Destination "$newTranscript"
         Write-Host "Clear transcript." -ForegroundColor Yellow
