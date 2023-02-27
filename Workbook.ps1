@@ -24,7 +24,10 @@ param (
     [switch]$IaAdd = $false,
 
     # the flag for addition contents to the exist folder
-    [switch]$IaAddTranscript = $false
+    [switch]$IaAddTranscript = $false,
+    
+    # Count of first files
+    [string]$First = 1000
 )
     
 begin {
@@ -88,10 +91,10 @@ process {
 
     # copying files
     Write-Host "Copy files to '$new_dir'." -ForegroundColor Green
-    Get-ChildItem -Path $Path -File | Copy-Item -Destination $new_dir 
+    Get-ChildItem -Path $Path -File | Sort-Object -Property LastWriteTime | Select-Object -First $First | Copy-Item -Destination $new_dir 
 
     # deleting screenshots
-    Get-ChildItem -Path $Path -File | Remove-Item
+    Get-ChildItem -Path $Path -File | Sort-Object -Property LastWriteTime | Select-Object -First $First | Remove-Item
     Write-Host "The folder 'screenshots' was cleared." -ForegroundColor Yellow  
 }
     
